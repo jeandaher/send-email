@@ -52,7 +52,11 @@ Louise
     attachments: [
         {
             filename: 'louise.txt',
-            content: 'Attachment content as a string or Buffer',
+            content: 'C est mon anniversaire ...',
+        },
+        {
+            filename: 'louise.pdf',
+            path: 'c:/pdfs/louise.pdf',
         },
     ],
 };
@@ -87,13 +91,3 @@ Une fois que vous avez configuré votre fichier send-emails.js, vous pouvez l'ex
 ```.bash
 node send-emails.js
 ```
-
-Pour envoyer facilement un PDF dans votre email, convertir votre pdf en bas64 ave le site:    
-```.bash
-https://base64.guru/converter/encode/pdf
-```
-
-Remplace le attachements content par le contenu base64.    
-
-
-
