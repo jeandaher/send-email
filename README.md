@@ -14,8 +14,8 @@ npm init -y
 npm install nodemailer
 ```
 
-### Ajouter un fichier send-emails    
-Ajouter sur la racine de votre projet le fichier send-emails.js avec le contenu suivant:
+### Ajouter les codes dans le fichier send-emails            
+Ajouter sur la racine de votre projet le fichier **send-emails.js** avec le contenu suivant:
 
 ```.js
 const nodemailer = require('nodemailer');
