@@ -88,4 +88,12 @@ Une fois que vous avez configuré votre fichier send-emails.js, vous pouvez l'ex
 node send-emails.js
 ```
 
-Assurez-vous que votre application a bien accès à votre compte Gmail et que vous avez autorisé l'accès aux applications moins sécurisées si nécessaire.
+Pour envoyer facilement un PDF dans votre email, convertir votre pdf en bas64 ave le site:    
+```.bash
+https://base64.guru/converter/encode/pdf
+```
+
+Remplace le attachements content par le contenu base64.    
+
+
+
