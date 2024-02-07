@@ -40,14 +40,15 @@ const mailOptions = {
     bcc: ['user1@gmail.com', 'user2@gmail.com'],
     subject: `C'est mon anniversaire !`,
     text: `Je fête mes 8 ans !.`,
-    html: `<p>This is the <strong>HTML content</strong> of the email. <br />
+    html: `
+<p>This is the <strong>HTML content</strong> of the email. <br />
 Je fête mes 8 ans !<br />
 Je t’invite pour m’aider à souffler ma 8ᵉ bougie, le samedi 2 mars !<br />
 Si tu es d’accord, rendez-vous chez moi à partir de 14 heures ! <br />
 Ensuite, il y aura un super goûter, des bonbons à volonté et même une chasse au trésor !<br />
 J’espère que tu viendras !  <br />
 Louise
-	</p>',
+</p>`,
     attachments: [
         {
             filename: 'louise.txt',
