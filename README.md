@@ -41,7 +41,7 @@ const mailOptions = {
     subject: `C'est mon anniversaire !`,
     text: `Je fête mes 8 ans !.`,
     html: `
-<p>This is the <strong>HTML content</strong> of the email. <br />
+<p>C'est mon <strong>anniversaire</strong> !. <br />
 Je fête mes 8 ans !<br />
 Je t’invite pour m’aider à souffler ma 8ᵉ bougie, le samedi 2 mars !<br />
 Si tu es d’accord, rendez-vous chez moi à partir de 14 heures ! <br />
