@@ -25,7 +25,7 @@ const transporter = nodemailer.createTransport({
     service: 'gmail',
     port: 587,
     auth: {
-      user: 'jeandaher1@gmail.com',
+      user: 'jean-admin@gmail.com',
       pass: 'xxxxYYYYxxxxYYYY', // generate app password using https://myaccount.google.com/apppasswords
     },
     tls: {
@@ -35,9 +35,9 @@ const transporter = nodemailer.createTransport({
 
 // Constructing the Email Message
 const mailOptions = {
-    from: 'jeandaher1@gmail.com', // Sender's email address
-    to: 'jeandaher1@gmail.com', // Receiver's email address
-    bcc: ['user1@gmail.com', 'user2@gmail.com'],
+    from: 'jean-admin@gmail.com', // Sender's email address
+    to: 'jean-admin@gmail.com', // Receiver's email address
+    bcc: ['example1@gmail.com', 'example2@gmail.com'],
     subject: `C'est mon anniversaire !`,
     text: `Je fête mes 8 ans !.`,
     html: `
@@ -81,7 +81,7 @@ Pour utiliser Nodemailer avec Gmail, vous devez générer un mot de passe d'appl
 https://myaccount.google.com/apppasswords
 ```
 
-### Personaliser l'envoi    
+### Completer la configuration     
 Remplacez ensuite l'email et le mot de passe dans le transporteur par vos propres identifiants Gmail.     
 De plus, remplacez les adresses email des destinataires dans mailOptions par celles que vous souhaitez utiliser.   
 
@@ -90,4 +90,97 @@ Une fois que vous avez configuré votre fichier send-emails.js, vous pouvez l'ex
 
 ```.bash
 node send-emails.js
+```
+
+### Personaliser l'envoi
+Notre ami souhaite personnaliser le contenu des e-mails en ajoutant le prénom du destinataire et une touche personnalisée. 
+Il dispose d'une liste d'adresses e-mail auxquelles il souhaite envoyer ces e-mails.
+
+Le fichier "send-emails" aura le contenu suivant :
+```.js
+const nodemailer = require('nodemailer');
+
+function sendEmail(userName, userEmail) {
+    return new Promise((resolve, reject) => {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            port: 587,
+            auth: {
+            user: 'jean-admin@gmail.com',
+            pass: 'password', // generate app password using https://myaccount.google.com/apppasswords
+            },
+            tls: {
+            rejectUnauthorized: false,
+            },
+        });
+ 
+        const mailOptions = {
+            from: 'jean-admin@gmail.com', // Sender's email address
+            to: 'jean-admin@gmail.com', // Receiver's email address
+            bcc: [`${userEmail}`],
+            subject: `Salut ${userName} C'est mon anniversaire !`,
+            text: `Je fête mes 8 ans !.`,
+            html: `
+        <p>Salut ${userName} C'est mon anniversaire ! <br />
+        Salut ${userName}
+        Je fête mes 8 ans !<br />
+        Je t’invite pour m’aider à souffler ma 8ᵉ bougie, le samedi 2 mars !<br />
+        Si tu es d’accord, rendez-vous chez moi à partir de 14 heures ! <br />
+        Ensuite, il y aura un super goûter, des bonbons à volonté et même une chasse au trésor !<br />
+        J’espère que tu viendras !  <br />
+        Louise
+        </p>`,
+            attachments: [
+                {
+                    filename: 'louise.txt',
+                    content: 'C est mon anniversaire ...',
+                },
+                {
+                    filename: 'louise.pdf',
+                    path: 'c:/pdfs/louise.pdf',
+                },
+            ],
+        };
+
+        // Sending the Email
+        transporter
+            .sendMail(mailOptions)
+            .then((info) => {
+                console.log('Emails envoyés:', info.response);
+                return resolve(info.response);
+            })
+            .catch((error) => {
+                console.error('Erreurs rencontrés durant l envoi:',error);
+                return resolve(error);
+            });        
+    })
+}
+
+
+// Liste des utilisateurs
+const userList = [
+    {"name": "Jean", "email": "jean@example.com"},
+    {"name": "Nathalie", "email": "nathalie@example.com"}
+];
+
+// Boucle pour envoyer des emails à tous les utilisateurs de la liste
+async function sendEmails() {
+    for (var i = 0; i < userList.length; i++) {
+        var user = userList[i];
+        try {
+            await sendEmail(user.name, user.email);
+        } catch (error) {
+            console.error("Erreur lors de l'envoi de l'email :", error.message);
+        }
+    }
+}
+
+sendEmails()
+    .then(() => {
+        console.log("Tous les emails ont été envoyés avec succès.");
+    })
+    .catch((error) => {
+        console.error("Une erreur s'est produite :", error.message);
+    });
+
 ```
